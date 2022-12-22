@@ -1,0 +1,54 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/apps/frontend/dist
+/apps/frontend/.firebase
+.firebaserc
+.firebase
+/tmp
+/out-tsc
+
+# dependencies
+node_modules
+
+# test based files
+*junit.xml
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# Local credential based files
+.env
+.env.dev
+.env.*
+**/credentials/*.json
+
+# System Files
+.DS_Store
+Thumbs.db
+
+TODO

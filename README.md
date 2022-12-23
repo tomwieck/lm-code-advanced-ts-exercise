@@ -78,7 +78,7 @@ But any app that makes HTTP requests can talk to a webserver, and in this case o
 
 👉 While converting, you'll have noticed that there are a couple of client features which haven't been implemented - including the ability to add new users.
 
-👉 Implement the `Add Users` functionality. This will require adding a new endpoint to the server. Look in `setup_routes.ts` and see how the "Send Server Message" is implemented. You can use this as a basis for a new route which allows you to add a new user by sending the data along in the `body`.
+👉 Implement the `Add Users` functionality. This will require adding a new endpoint to the server. Look in `setup_routes.ts` and see how the "Send Server Message" is implemented. You can use this as a basis for a new route which allows you to add a new user by sending the data along in the `body`. You'll notice too that the `send_message_to_server` function on the client has to specify certain headers and HTTP types to pass a `body` along.
 
 💡 Currently the server generates a new array of users every time it is asked for one - can you get it to hold onto a specific array and alter it if a new user is added? (You don't need a database or file persistence for this - in-memory persistence is fine.)
 

@@ -3,14 +3,21 @@ import { baseUrl } from "./base_url.mjs";
 
 export async function sendMessageToServer(message) {
 	try {
-		const result = await fetch(baseUrl + "/api/send/" + message);
+		const result = await fetch(baseUrl + "/api/send/", {
+			headers: {
+				"Content-Type": "application/json",
+			},
+			method: "POST",
+			body: JSON.stringify({ message: message }),
+		});
 
 		const json = await result.json();
 
 		const { success } = json;
 
 		return success;
-	} catch {
+	} catch (e) {
+		console.error(e);
 		return false;
 	}
 }

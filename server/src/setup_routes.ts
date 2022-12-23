@@ -43,17 +43,10 @@ function addAPIRoutes(app: Express) {
 	});
 
 	console.log("✍️  Adding messaging routes...");
-	apiRouter.get("/send/:message", (req, res) => {
-		console.log(`👋 Received "${req.params.message}"`);
+	apiRouter.post("/send/", (req, res) => {
+		const { body } = req;
+		console.log(`👋 Received "${body.message}"`);
 		res.status(200).send({ success: true });
-	});
-
-	apiRouter.get("/posts/:id", (req, res) => {
-		res
-			.status(200)
-			.send(
-				JSON.stringify(getAllPosts().filter((p) => p.id === req.params.id))
-			);
 	});
 
 	console.log("✍️  Adding blog post routes...");

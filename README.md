@@ -66,6 +66,12 @@ But any app that makes HTTP requests can talk to a webserver, and in this case o
 
 👉 Open a second terminal. In one terminal run `npm run start-server` and in the other terminal run `npm run start-client`. Now your client can contact the server!
 
+💡 In VS Code you can click the `Split` button in your terminal to open two terminals side-by-side:
+
+![Dual Terminals](./images/dual_terminals.jpg)
+
+(And most other modern terminal programs have similar functionality.)
+
 ## Your Goal: Stage One
 
 👉 Convert the client application to TypeScript.

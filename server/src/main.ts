@@ -1,4 +1,4 @@
-import express from "express";
+import * as express from "express";
 
 import { Server } from "http";
 import { initialiseRoutes } from "./setup_routes";

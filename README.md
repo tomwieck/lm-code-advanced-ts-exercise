@@ -42,9 +42,9 @@ You should be able to see:
 
 👉 Verify that the URL endpoints above are working correctly.
 
-## Goal
+## Initial Exploration
 
-The goal of this exercise is to take the `client` code and convert it to TypeScript.
+The eventual goal of this exercise will be to take the `client` code and convert it to TypeScript.
 
 Usually a `client` for an app like this would be a web frontend, perhaps built in a framework such as React.
 
@@ -58,7 +58,15 @@ But any app that makes HTTP requests can talk to a webserver, and in this case o
 
 👉 Explore the client application in the console.
 
-## Your Goal
+👉 You'll find that it fails if you try to contact the server.
+
+👉 Stop the client by pressing `Ctrl-C` in the terminal.
+
+👉 Often you would run both the server and client together by running a convenience command such as `npm start`. However, since these are both console-based applications it gets a little messy running them both in the same terminal instance.
+
+👉 Open a second terminal. In one terminal run `npm run start-server` and in the other terminal run `npm run start-client`. Now your client can contact the server!
+
+## Your Goal: Stage One
 
 👉 Convert the client application to TypeScript.
 
@@ -66,6 +74,16 @@ But any app that makes HTTP requests can talk to a webserver, and in this case o
 
 💡 It's up to you what to do. Perhaps you can rely on a lot of type inference, perhaps you want to define many custom types.
 
-💡 ??? Since types are already defined for the `server` you can reuse them. However, it's not normally this simple to ...
+## Your Goal: Stage Two
+
+👉 While converting, you'll have noticed that there are a couple of client features which haven't been implemented - including the ability to add new users.
+
+👉 Implement the `Add Users` functionality. This will require adding a new endpoint to the server. Look in `setup_routes.ts` and see how the "Send Server Message" is implemented. You can use this as a basis for a new route which allows you to add a new user by sending the data along in the `body`.
+
+💡 Currently the server generates a new array of users every time it is asked for one - can you get it to hold onto a specific array and alter it if a new user is added? (You don't need a database or file persistence for this - in-memory persistence is fine.)
+
+👉 Can you also add functionality to add a new `post` to the server list, in the same way as with users?
+
+## Extension Ideas
 
 👉 Be creative if you like! Feel free to modify / improve the `server` and `client` applications if you can see ways they could be improved. The point is to learn, not to arrive at a predefined perfect solution!

@@ -1,4 +1,5 @@
-import express, { Express, json } from "express";
+import * as express from "express";
+import { Express, json } from "express";
 import { getAllPosts } from "./routes/get_posts";
 import { getAllUsers } from "./routes/get_users";
 
@@ -18,6 +19,7 @@ function addBrowseableRoutes(app: Express) {
 
 	browseableRouter.use((req, res, next) => {
 		res.header("Access-Control-Allow-Methods", "GET");
+		console.log(`📨 ${req.url}`);
 		next();
 	});
 
@@ -38,6 +40,20 @@ function addAPIRoutes(app: Express) {
 	apiRouter.use((req, res, next) => {
 		res.setHeader("Content-Type", "application/json");
 		next();
+	});
+
+	console.log("✍️  Adding messaging routes...");
+	apiRouter.get("/send/:message", (req, res) => {
+		console.log(`👋 Received "${req.params.message}"`);
+		res.status(200).send({ success: true });
+	});
+
+	apiRouter.get("/posts/:id", (req, res) => {
+		res
+			.status(200)
+			.send(
+				JSON.stringify(getAllPosts().filter((p) => p.id === req.params.id))
+			);
 	});
 
 	console.log("✍️  Adding blog post routes...");

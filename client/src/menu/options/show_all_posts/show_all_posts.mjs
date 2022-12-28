@@ -1,5 +1,5 @@
-import { getAllPosts } from "../api/get_all_posts.mjs";
-import { clear, print, printNewLine, prompt } from "../ui/console.mjs";
+import { fetchAllPosts } from "../../../api/fetch_all_posts.mjs";
+import { clear, print, prompt, printNewLine } from "../../../ui/console.mjs";
 
 export async function showAllPosts() {
 	clear("yes");
@@ -8,7 +8,7 @@ export async function showAllPosts() {
 
 	print("📨 Fetching posts...");
 
-	const result = await getAllPosts();
+	const result = await fetchAllPosts();
 
 	print(`🥳 Received ${result.length} posts. Here they are:`);
 
@@ -16,4 +16,6 @@ export async function showAllPosts() {
 
 	printNewLine();
 	await prompt("⌨️ Press [ENTER] to return to the main menu! 🕶️");
+
+	return result;
 }

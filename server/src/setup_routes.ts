@@ -6,66 +6,73 @@ import { getAllUsers } from "./routes/get_users";
 export function initialiseRoutes(app: Express) {
 	console.log("🏗️  Setting up routers...");
 
-	addBrowseableRoutes(app);
+	addBaseRouter(app);
 
 	addAPIRoutes(app);
 }
 
-function addBrowseableRoutes(app: Express) {
-	console.log("🛠️  Creating browseable router...");
-	// we'll use this router to return any routes that we'd like to return
+function addBaseRouter(app: Express) {
+	console.log("🛠️  Creating base router...");
 
-	const browseableRouter = express.Router();
+	const baseRouter = express.Router();
 
-	browseableRouter.use((req, res, next) => {
+	baseRouter.use((req, res, next) => {
 		res.header("Access-Control-Allow-Methods", "GET");
 		console.log(`📨 ${req.url}`);
 		next();
 	});
 
 	console.log("🏠❤️‍🩹  Adding home health check route...");
-	browseableRouter.get("/", (req, res) => {
+	baseRouter.get("/", (req, res) => {
 		res.status(200).send("👍 Okay! The server is responding! 🙌");
 	});
 
 	console.log("🛠️  Applying browseable router to Express server...");
-	app.use("/", browseableRouter);
+	app.use("/", baseRouter);
 }
 
+// this function adds all the routes we can access by going to /api/[someRoute]
 function addAPIRoutes(app: Express) {
 	console.log("🛠️  Creating API router...");
 
-	// we'll use this router to return specifically JSON
 	const apiRouter = express.Router();
 	apiRouter.use((req, res, next) => {
+		// we'll use this router to return specifically JSON
 		res.setHeader("Content-Type", "application/json");
 		next();
 	});
 
-	console.log("✍️  Adding messaging routes...");
+	// this route allows the client to "send a message" to the server
+	console.log("📨  Adding messaging route...");
 	apiRouter.post("/send/", (req, res) => {
 		const { body } = req;
+
+		// we don't do anything with the message, but let's echo it back in the console
 		console.log(`👋 Received "${body.message}"`);
+
+		// reply with a success boolean
 		res.status(200).send({ success: true });
 	});
 
+	// now we'll add some routes that let us browse some blog posts
 	console.log("✍️  Adding blog post routes...");
 	apiRouter.get("/posts/all", (req, res) => {
 		res.status(200).send(JSON.stringify(getAllPosts()));
 	});
 
 	apiRouter.get("/posts/:id", (req, res) => {
-		res
-			.status(200)
-			.send(
-				JSON.stringify(getAllPosts().filter((p) => p.id === req.params.id))
-			);
+		const post = getAllPosts().find((p) => p.id === req.params.id);
+		if (post !== undefined)
+			res.status(200).send(JSON.stringify({ postFound: true, ...post }));
+		else res.status(200).send(JSON.stringify({ postFound: false }));
 	});
 
 	console.log("✍️  Adding user routes...");
 	apiRouter.get("/users/all", (req, res) => {
 		res.status(200).send(JSON.stringify(getAllUsers()));
 	});
+
+	// ❗ [1] See README
 
 	apiRouter.get("/users/:id", (req, res) => {
 		res

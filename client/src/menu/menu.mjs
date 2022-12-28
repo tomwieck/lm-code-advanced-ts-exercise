@@ -17,5 +17,6 @@ export async function showMenu() {
 	if (result === "2") return states.SHOW_USERS;
 	if (result === "3") return states.BROWSE_POSTS;
 	if (result === "4") return states.ADD_USER;
+
 	return states.UNKNOWN;
 }

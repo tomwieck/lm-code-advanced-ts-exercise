@@ -4,7 +4,7 @@
 // ❌ DON'T BOTHER CONVERTING THIS FILE TO TypeScript UNLESS YOU DESPERATELY WANT TO
 // ❌
 
-// node displays an annoying console warning whenever we use `fetch`
+// node 18 displays an annoying console warning whenever we use `fetch`
 // this hijacks the warning printing and ignores this one
 
 export function suppressNodeWarnings() {

@@ -1,11 +1,13 @@
 import { exit } from "./exit/exit.mjs";
 import { showMenu } from "./menu/menu.mjs";
-import { sendMessage } from "./send_message/send_message.mjs";
-import { showAllPosts } from "./show_all_posts/show_all_posts.mjs";
+import { browsePosts } from "./menu/options/browse_posts/browse_posts.mjs";
+import { sendMessage } from "./menu/options/send_message/send_message.mjs";
+import { showAllPosts } from "./menu/options/show_all_posts/show_all_posts.mjs";
+import { showAllUsers } from "./menu/options/show_all_users/show_all_users.mjs";
 import { State } from "./states/state.mjs";
 import { states } from "./states/states.mjs";
 import { suppressNodeWarnings } from "./suppress_node_warnings.mjs";
-import { clear, print, prompt } from "./ui/console.mjs";
+import { clear, print, printNewLine, prompt } from "./ui/console.mjs";
 
 clear(true);
 print("👋 Welcome to our cool blog browser!");
@@ -32,23 +34,20 @@ async function main() {
 				clear();
 				const posts = await showAllPosts();
 				state.set(states.MENU);
-
 				break;
 			case "SHOW_USERS":
 				clear();
-				print("🏗️ This functionality has not been implemented!");
-				await prompt("⌨️ Press [ENTER] to return to the main menu! 🕶️");
+				const users = await showAllUsers();
 				state.set(states.MENU);
 				break;
 			case "BROWSE_POSTS":
 				clear();
-				print("🏗️ This functionality has not been implemented!");
-				await prompt("⌨️ Press [ENTER] to return to the main menu! 🕶️");
+				const post = await browsePosts();
 				state.set(states.MENU);
 				break;
 			case "ADD_USER":
 				clear();
-				print("🏗️ This functionality has not been implemented!");
+				print("🏗️  This functionality has not been implemented!");
 				await prompt("⌨️ Press [ENTER] to return to the main menu! 🕶️");
 				state.set(states.MENU);
 				break;
@@ -68,8 +67,12 @@ async function main() {
 				state.set(states.MENU);
 				break;
 			default:
-				print("🌋 Uh-oh, we've entered an invalid state: " + state.get());
-				print("💥 Crashing the program now...");
+				clear();
+				print(`🌋 😱 Uh-oh, we've entered an invalid state: "${state.get()}"`);
+				print("💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥", false);
+				print("💥 Crashing the program now...  💥", false);
+				print("💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥", false);
+				printNewLine();
 				exit(99);
 				break;
 		}

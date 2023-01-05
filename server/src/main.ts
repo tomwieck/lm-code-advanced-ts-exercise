@@ -1,9 +1,9 @@
 import * as express from "express";
 
 import { Server } from "http";
-import { initialiseRoutes } from "./setup_routes";
+import { initialiseRoutes } from "./routes/routes";
 import { printNewLine } from "./helpers/helpers";
-import { checkConfig } from "./config/check_config";
+import { validateConfig } from "./config/validate_config";
 import { getConfig } from "./config/config";
 
 try {
@@ -11,7 +11,7 @@ try {
 
 	const config = getConfig();
 
-	if (!checkConfig(config)) {
+	if (!validateConfig(config)) {
 		console.log("❌ Config not setup!");
 		process.exit(1); // exit with a non-zero error code
 	}

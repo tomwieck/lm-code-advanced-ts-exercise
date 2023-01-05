@@ -1,7 +1,17 @@
 import * as express from "express";
-import { Express, json } from "express";
-import { getAllPosts } from "./routes/get_posts";
-import { getAllUsers } from "./routes/get_users";
+import { Express } from "express";
+import { getAllPosts } from "../services/posts_service";
+import { getAllUsers } from "../services/users_service";
+
+/*
+
+	This file hooks up routes such as `/` or `/users` with methods that can handle their response
+
+	Normally we'd put those methods in a Controller layer, to keep them separate...
+
+	... but for this little project we'll bypass that and keep the logic all in this one file.
+
+*/
 
 export function initialiseRoutes(app: Express) {
 	console.log("🏗️  Setting up routers...");
@@ -27,7 +37,7 @@ function addBaseRouter(app: Express) {
 		res.status(200).send("👍 Okay! The server is responding! 🙌");
 	});
 
-	console.log("🛠️  Applying browseable router to Express server...");
+	console.log("🛠️  Applying base router to Express server...");
 	app.use("/", baseRouter);
 }
 

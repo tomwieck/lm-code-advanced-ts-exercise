@@ -7,7 +7,7 @@
 		"sourceMap": true,
 		"allowSyntheticDefaultImports": true
 	},
-	"include": ["src/**/*"],
+	"include": ["./**/*"],
 	"exclude": ["node_modules", "**/*.spec.ts"],
 	"ts-node": {
 		"esm": true,

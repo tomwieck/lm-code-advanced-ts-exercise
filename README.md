@@ -30,7 +30,7 @@ The `server` application is written using TypeScript, and is located in the `/se
 
 The server is a basic Node Express application. Express is a webserver which "listens" for requests and sends a response, depending on the URL of the request and any data sent along with it.
 
-Don't worry if you're not familiar with Express yet - that's not the point of this exercise!
+Don't worry if you're not familiar with Express - that's not the point of this exercise!
 
 👉 If you start the server using `npm run start-server` you will see the console output. When it finishes starting up, it shows a couple of example URLs you can use to interact with it. By default, these are:
 
@@ -115,6 +115,8 @@ import { exit } from "./exit/exit";        // ✅ NEW - after renaming to "exit.
 
 💡 You may even want to restructure the program, or rewrite the menu so it uses generics instead of a giant `switch` case. (This may be tricky, but the experience of trying it could be valuable if you like a challenge!)
 
+---
+
 ## EXTENSION ONE - Add a new endpoint for `Add Users`
 
 👉 While converting, you may have noticed that there are a couple of client features which haven't been implemented - including the ability to add new users.
@@ -135,9 +137,7 @@ import { exit } from "./exit/exit";        // ✅ NEW - after renaming to "exit.
 
 👉 Write some client code to fetch from your new endpoint when the `Add user` menu option is selected. Follow the same patterns as the rest of the application. Base the implementation on the `sendMessage` menu option, as that does everything you need your new endpoint to do too - i.e. it sends a bunch of data to the server, which is what you want to do.
 
-💡 Once you've got the client sending a body to your new "add users" endpoint, think about how you can get your endpoint to add this data to the list of users.
-
-💡 Currently the server generates a completely new—but identical—array of users every time it is asked for one. Can you get the server to hold onto a specific array and alter it if a new user is added?
+💡 Once you've got the client sending a body to your new "add users" endpoint, think about how you can get your endpoint to add this data to the list of users. Currently the server generates a completely new—but identical—array of users every time it is asked for one. Can you get the server to hold onto a specific array and alter it if a new user is added?
 
 ❗ You don't need a database or file persistence for this - in-memory persistence is fine. In other words, you just need to make the server have a single array of users - `api/users/all` needs to return that array, and your new "add user" endpoint needs to modify it.
 

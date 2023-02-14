@@ -6,20 +6,14 @@ import { showAllPosts } from "./menu/options/show_all_posts/show_all_posts.mjs";
 import { showAllUsers } from "./menu/options/show_all_users/show_all_users.mjs";
 import { State } from "./states/state.mjs";
 import { states } from "./states/states.mjs";
-import { suppressNodeWarnings } from "./suppress_node_warnings.mjs";
 import { clear, print, printNewLine, prompt } from "./ui/console.mjs";
 
 async function begin() {
 	clear(true);
 	print("👋 Welcome to our cool blog browser!");
 	await prompt("⌨️ Press [ENTER] to continue! 🕶️");
-
-	suppressNodeWarnings();
-
 	main();
 }
-
-begin();
 
 async function main() {
 	let state = new State();
@@ -82,3 +76,5 @@ async function main() {
 		}
 	}
 }
+
+begin();

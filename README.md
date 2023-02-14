@@ -16,6 +16,8 @@ npm install
 
 👉 🔴 Use the command `node -v` and ensure you are running **_Node 18 or higher_** or this application will not work!
 
+👉 If you're on `Node 18.12.0` or less then you will get some irritating warnings about "experimental features" in the terminal. You can remove these by upgrading to `Node 18.13.0` or above.
+
 ## Introduction
 
 This repository contains two applications: a `server` and a `client`. We'll begin with the server.
@@ -92,7 +94,7 @@ But _any_ app that makes HTTP requests can talk to a webserver. In this case our
 
 👉 Since TypeScript is already configured for this project, you just need to rename files to `.ts` and start using TypeScript features.
 
-🛑 In this case, it'll be easier if you rename _all_ the `.mjs` files in `client` to `.ts` at the same time.
+🛑 In this case, it'll be easier if you rename _all_ the `.mjs` files in `client` to `.ts` at the same time. If you just rename some of them, you'll get weird module errors.
 
 🛑 NB: Watch out for your `import` statements. When you convert to TypeScript, you should remove any file extensions, so:
 
@@ -101,9 +103,9 @@ import { exit } from "./exit/exit.mjs";    // ❌ OLD
 import { exit } from "./exit/exit";        // ✅ NEW - after renaming to "exit.ts"
 ```
 
-💡 It's up to you what to do beyond that!
+👉 Once you've done that, you should have some fixable errors remaining.
 
-💡 Hint: First fix any remaining errors.
+👉 After that, it's up to you what to do. Here's some ideas you might consider:
 
 💡 Hint: Adding type annotations to function parameters is an easy place to start.
 
@@ -113,13 +115,13 @@ import { exit } from "./exit/exit";        // ✅ NEW - after renaming to "exit.
 
 💡 You may even want to restructure the program, or rewrite the menu so it uses generics instead of a giant `switch` case. (This may be tricky, but the experience of trying it could be valuable if you like a challenge!)
 
-## Stage Two - Add a new endpoint for `Add Users`
+## EXTENSION ONE - Add a new endpoint for `Add Users`
 
-👉 While converting, you'll have noticed that there are a couple of client features which haven't been implemented - including the ability to add new users.
+👉 While converting, you may have noticed that there are a couple of client features which haven't been implemented - including the ability to add new users.
 
 👉 Implement the `Add Users` functionality. This will require adding a new endpoint to the server which can take data.
 
-💡 Look in `setup_routes.ts` to see how the "Send Server Message" is implemented. It receives a `body` from the HTTP request, which was sent from the `send_message_to_server` function in the client. Notice that the client has to specify certain headers and HTTP method types to pass a `body` along - you'll have to do this too.
+💡 Look in `server/routes/routes.ts` to see how the "Send Server Message" is implemented. It receives a `body` from the HTTP request, which was sent from the `send_message_to_server` function in the client. Notice that the client has to specify certain headers and HTTP method types to pass a `body` along - you'll have to do this too.
 
 👉 Create a new endpoint for adding a user. A route like `api/users/add` might be sensible - a bit like how `api/users/all` acts as a special case that returns all of the users. Copy the `api/users/all` code and put it where this marker has been left in the code:
 
@@ -139,12 +141,12 @@ import { exit } from "./exit/exit";        // ✅ NEW - after renaming to "exit.
 
 ❗ You don't need a database or file persistence for this - in-memory persistence is fine. In other words, you just need to make the server have a single array of users - `api/users/all` needs to return that array, and your new "add user" endpoint needs to modify it.
 
-## Stage Three - Add a new endpoint and menu option for `Add Posts`
+## EXTENSION TWO - Add a new endpoint and menu option for `Add Posts`
 
 👉 Can you also add functionality to add a new `post` to the server list, in the same way as with users? This would mean adding a new menu option too - which hopefully your TypeScript conversion will make simpler!
 
-## Extension Ideas
+## EXTENSION THREE - Experiment
 
-👉 Be creative if you like! Feel free to modify / improve the `server` and `client` applications if you can see ways they could be improved. The point is to learn, not to arrive at a predefined perfect solution!
+👉 Be creative if you like! Feel free to modify / improve the `server` and `client` applications if you can see ways they could be improved or features you could try to add. The point is to learn, not to arrive at a predefined perfect solution!
 
 👉 Take some time to explore the rest of the code in `/server` to see if you can figure out how it works.

@@ -1,5 +1,5 @@
-import { fetchPost } from "../../../api/fetch_post.mjs";
-import { clear, print, prompt, printNewLine } from "../../../ui/console.mjs";
+import { fetchPost } from "../../../api/fetch_post.ts/index.js";
+import { clear, print, prompt, printNewLine } from "../../../ui/console.js";
 
 export async function browsePosts() {
 	clear("nope");

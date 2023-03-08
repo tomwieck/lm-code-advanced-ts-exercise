@@ -1,12 +1,12 @@
-import { exit } from "./exit/exit.mjs";
-import { showMenu } from "./menu/menu.mjs";
-import { browsePosts } from "./menu/options/browse_posts/browse_posts.mjs";
-import { sendMessage } from "./menu/options/send_message/send_message.mjs";
-import { showAllPosts } from "./menu/options/show_all_posts/show_all_posts.mjs";
-import { showAllUsers } from "./menu/options/show_all_users/show_all_users.mjs";
-import { State } from "./states/state.mjs";
-import { states } from "./states/states.mjs";
-import { clear, print, printNewLine, prompt } from "./ui/console.mjs";
+import { exit } from "./exit/exit.ts/index.js";
+import { showMenu } from "./menu/menu.ts/index.js";
+import { browsePosts } from "./menu/options/browse_posts/browse_posts.ts/index.js";
+import { sendMessage } from "./menu/options/send_message/send_message.ts/index.js";
+import { showAllPosts } from "./menu/options/show_all_posts/show_all_posts.ts/index.js";
+import { showAllUsers } from "./menu/options/show_all_users/show_all_users.ts/index.js";
+import { State } from "./states/state.ts/index.js";
+import { states } from "./states/states.ts/index.js";
+import { clear, print, printNewLine, prompt } from "./ui/console.ts/index.js";
 
 async function begin() {
 	clear(true);
